@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<access component="com_hello_world">
+	<section name="component">
+		<action name="core.admin" title="JACTION_ADMIN" description="JACTION_ADMIN_COMPONENT_DESC" />
+		<action name="core.options" title="JACTION_OPTIONS" description="JACTION_OPTIONS_COMPONENT_DESC" />
+		<action name="core.manage" title="JACTION_MANAGE" description="JACTION_MANAGE_COMPONENT_DESC" />
+		<action name="core.export" title="COM_HELLO_WORLD_EXPORT_DATA" description="COM_HELLO_WORLD_EXPORT_DATA_DESC" />
+		<action name="core.import" title="COM_HELLO_WORLD_IMPORT_DATA" description="COM_HELLO_WORLD_IMPORT_DATA_DESC" />
+		<action name="core.batch" title="COM_HELLO_WORLD_USE_BATCH" description="COM_HELLO_WORLD_USE_BATCH_DESC" />
+		<action name="core.version" title="COM_HELLO_WORLD_EDIT_VERSIONS" description="COM_HELLO_WORLD_EDIT_VERSIONS_DESC" />
+		<action name="core.create" title="JACTION_CREATE" description="JACTION_CREATE_COMPONENT_DESC" />
+		<action name="core.delete" title="JACTION_DELETE" description="JACTION_DELETE_COMPONENT_DESC" />
+		<action name="core.edit" title="JACTION_EDIT" description="JACTION_EDIT_COMPONENT_DESC" />
+		<action name="core.edit.state" title="JACTION_EDITSTATE" description="JACTION_ACCESS_EDITSTATE_DESC" />
+		<action name="core.edit.own" title="JACTION_EDITOWN" description="JACTION_EDITOWN_COMPONENT_DESC" />
+		<action name="core.edit.created_by" title="COM_HELLO_WORLD_EDIT_CREATED_BY" description="COM_HELLO_WORLD_EDIT_CREATED_BY_DESC" />
+		<action name="core.edit.created" title="COM_HELLO_WORLD_EDIT_CREATED_DATE" description="COM_HELLO_WORLD_EDIT_CREATED_DATE_DESC" />
+		<action name="site.greet.access" title="COM_HELLO_WORLD_GREETING_ACCESS_SITE" description="COM_HELLO_WORLD_GREETING_ACCESS_SITE_DESC" />
+		<action name="greeting.access" title="COM_HELLO_WORLD_GREETINGS_ACCESS" description="COM_HELLO_WORLD_GREETINGS_ACCESS_DESC" />
+		<action name="site.greetings.access" title="COM_HELLO_WORLD_GREETINGS_ACCESS_SITE" description="COM_HELLO_WORLD_GREETINGS_ACCESS_SITE_DESC" />
+		<action name="greeting.batch" title="COM_HELLO_WORLD_GREETINGS_BATCH_USE" description="COM_HELLO_WORLD_GREETINGS_BATCH_USE_DESC" />
+		<action name="greeting.dashboard_add" title="COM_HELLO_WORLD_GREETINGS_DASHBOARD_ADD" description="COM_HELLO_WORLD_GREETINGS_DASHBOARD_ADD_DESC" />
+		<action name="greeting.dashboard_list" title="COM_HELLO_WORLD_GREETINGS_DASHBOARD_LIST" description="COM_HELLO_WORLD_GREETINGS_DASHBOARD_LIST_DESC" />
+		<action name="greeting.edit.greeting" title="COM_HELLO_WORLD_GREETINGS_EDIT_GREETING" description="COM_HELLO_WORLD_GREETINGS_EDIT_GREETING_DESC" />
+		<action name="greeting.version" title="COM_HELLO_WORLD_GREETINGS_EDIT_VERSION" description="COM_HELLO_WORLD_GREETINGS_EDIT_VERSION_DESC" />
+		<action name="greeting.export" title="COM_HELLO_WORLD_GREETINGS_EXPORT" description="COM_HELLO_WORLD_GREETINGS_EXPORT_DESC" />
+		<action name="greeting.import" title="COM_HELLO_WORLD_GREETINGS_IMPORT" description="COM_HELLO_WORLD_GREETINGS_IMPORT_DESC" />
+		<action name="greeting.submenu" title="COM_HELLO_WORLD_GREETINGS_SUBMENU" description="COM_HELLO_WORLD_GREETINGS_SUBMENU_DESC" />
+	</section>
+	<section name="greeting">
+		<action name="greeting.edit.greeting" title="COM_HELLO_WORLD_GREETINGS_EDIT_GREETING" description="COM_HELLO_WORLD_GREETINGS_EDIT_GREETING_DESC" />
+		<action name="greeting.version" title="COM_HELLO_WORLD_GREETINGS_EDIT_VERSION" description="COM_HELLO_WORLD_GREETINGS_EDIT_VERSION_DESC" />
+	</section>
+</access>

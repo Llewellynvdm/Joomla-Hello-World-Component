@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<metadata>
+	<layout title="COM_HELLO_WORLD_MENU_GREETINGS_TITLE" option="COM_HELLO_WORLD_MENU_GREETINGS_OPTION">
+		<message>
+			<![CDATA[COM_HELLO_WORLD_MENU_GREETINGS_DESC]]>
+		</message>
+	</layout>
+</metadata>
