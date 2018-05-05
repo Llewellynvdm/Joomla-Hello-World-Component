@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.2" method="upgrade">
 	<name>COM_HELLO_WORLD</name>
-	<creationDate>25th April, 2018</creationDate>
+	<creationDate>5th May, 2018</creationDate>
 	<author>Llewellyn</author>
 	<authorEmail>joomla@vdm.io</authorEmail>
 	<authorUrl>https://www.vdm.io</authorUrl>
@@ -78,6 +78,7 @@
 			<filename>controller.php</filename>###WHMCS_ENCRYPT_FILE###
 			<filename>index.html</filename>
 			<filename>hello_world.php</filename>
+			<filename>README.txt</filename>
 			<folder>assets</folder>
 			<folder>controllers</folder>
 			<folder>helpers</folder>
@@ -94,4 +95,7 @@
 		</languages>
 
 	</administration>
+	<updateservers>
+		<server type="extension" enabled="1" element="com_hello_world" name="Hello World">https://raw.githubusercontent.com/namibia/JCB-Hello-World/master/helloworld_updateserver.xml</server>
+	</updateservers>
 </extension>

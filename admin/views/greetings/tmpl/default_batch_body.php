@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			25th April, 2018
+	@build			5th May, 2018
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		default_batch_body.php

@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			25th April, 2018
+	@build			5th May, 2018
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		greeting.php
@@ -321,26 +321,13 @@ class Hello_worldTableGreeting extends JTable
 	}
 
 	/**
-	 * Generate a valid alias from title / date.
-	 * Remains public to be able to check for duplicated alias before saving
-	 *
-	 * @return  string
-	 */
+	* This view does not actually have an alias
+	*
+	* @return  bool
+	*/
 	public function generateAlias()
 	{
-		if (empty($this->alias))
-		{
-			$this->alias = $this->name;
-		}
-
-		$this->alias = JApplication::stringURLSafe($this->alias);
-
-		if (trim(str_replace('-', '', $this->alias)) == '')
-		{
-			$this->alias = JFactory::getDate()->format("Y-m-d-H-i-s");
-		}
-
-		return $this->alias;
+		return false;
 	}
 
 }

@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			25th April, 2018
+	@build			5th May, 2018
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		hello_world.php
@@ -509,8 +509,15 @@ abstract class Hello_worldHelper
 		return false;
 	}
 
-	public static function jsonToString($value, $sperator = ", ", $table = null)
+	public static function jsonToString($value, $sperator = ", ", $table = null, $id = 'id', $name = 'name')
 	{
+		// do some table foot work
+		$external = false;
+		if (strpos($table, '#__') !== false)
+		{
+			$external = true;
+			$table = str_replace('#__', '', $table);
+		}
 		// check if string is JSON
 		$result = json_decode($value, true);
 		if (json_last_error() === JSON_ERROR_NONE)
@@ -523,9 +530,19 @@ abstract class Hello_worldHelper
 					$names = array();
 					foreach ($result as $val)
 					{
-						if ($name = self::getVar($table, $val, 'id', 'name'))
+						if ($external)
 						{
-							$names[] = $name;
+							if ($name = self::getVar(null, $val, $id, $name, '=', $table))
+							{
+								$names[] = $name;
+							}
+						}
+						else
+						{
+							if ($name = self::getVar($table, $val, $id, $name))
+							{
+								$names[] = $name;
+							}
 						}
 					}
 					if (self::checkArray($names))
