@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			5th May, 2018
+	@build			12th June, 2019
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		default.php
@@ -19,14 +19,14 @@
 /------------------------------------------------------------------------------------------------------*/
 
 // No direct access to this file
-defined('_JEXEC') or die('Restricted access'); 
+defined('_JEXEC') or die('Restricted access');
 
 $edit = "index.php?option=com_hello_world&view=greetings&task=greeting.edit";
 
 ?>
-<?php echo $this->toolbar->render(); ?> 
+<?php echo $this->toolbar->render(); ?>
 <ul class="uk-list uk-list-striped">
 <?php foreach ($this->items as $item): ?>
 <li><?php echo JText::_('COM_HELLO_WORLD_GREETING'); ?>: <a href="<?php echo JRoute::_(Hello_worldHelperRoute::getGreetRoute($item->slug)); ?>"><?php echo $item->greeting; ?></a> <a href="<?php echo $edit; ?>&id=<?php echo $item->id; ?>"><?php echo JText::_('COM_HELLO_WORLD_EDIT'); ?></a></li>
 <?php endforeach; ?>
-</ul> 
+</ul>

@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			5th May, 2018
+	@build			12th June, 2019
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		hello_world.php
@@ -20,17 +20,13 @@
 
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
+JHtml::_('behavior.tabstate');
 
 // Access check.
 if (!JFactory::getUser()->authorise('core.manage', 'com_hello_world'))
 {
-	return JError::raiseWaring(404, JText::_('JERROR_ALERTNOAUTHOR'));
+	throw new JAccessExceptionNotallowed(JText::_('JERROR_ALERTNOAUTHOR'), 403);
 };
-
-// Load cms libraries
-JLoader::registerPrefix('J', JPATH_PLATFORM . '/cms');
-// Load joomla libraries without overwrite
-JLoader::registerPrefix('J', JPATH_PLATFORM . '/joomla',false);
 
 // Add CSS file for all pages
 $document = JFactory::getDocument();
@@ -38,11 +34,8 @@ $document->addStyleSheet('components/com_hello_world/assets/css/admin.css');
 $document->addScript('components/com_hello_world/assets/js/admin.js');
 
 // require helper files
-JLoader::register('Hello_worldHelper', dirname(__FILE__) . '/helpers/hello_world.php'); 
-JLoader::register('JHtmlBatch_', dirname(__FILE__) . '/helpers/html/batch_.php'); 
-
-// import joomla controller library
-jimport('joomla.application.component.controller');
+JLoader::register('Hello_worldHelper', __DIR__ . '/helpers/hello_world.php'); 
+JLoader::register('JHtmlBatch_', __DIR__ . '/helpers/html/batch_.php'); 
 
 // Get an instance of the controller prefixed by Hello_world
 $controller = JControllerLegacy::getInstance('Hello_world');

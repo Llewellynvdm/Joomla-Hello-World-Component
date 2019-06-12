@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			5th May, 2018
+	@build			12th June, 2019
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		route.php
@@ -21,10 +21,6 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-// Component Helper
-jimport('joomla.application.component.helper');
-jimport('joomla.application.categories');
-
 /**
  * Hello_world Route Helper
  **/
@@ -33,8 +29,8 @@ abstract class Hello_worldHelperRoute
 	protected static $lookup;
 
 	/**
-	* @param int The route of the Greet
-	*/
+	 * @param int The route of the Greet
+	 */
 	public static function getGreetRoute($id = 0, $catid = 0)
 	{
 		if ($id > 0)
@@ -49,8 +45,10 @@ abstract class Hello_worldHelperRoute
 		else
 		{
 			// Initialize the needel array.
-			$needles = array();
-			//Create the link but don't add the id.
+			$needles = array(
+				'greet'  => array()
+			);
+			// Create the link but don't add the id.
 			$link = 'index.php?option=com_hello_world&view=greet';
 		}
 		if ($catid > 1)
@@ -74,8 +72,8 @@ abstract class Hello_worldHelperRoute
 	}
 
 	/**
-	* @param int The route of the Greetings
-	*/
+	 * @param int The route of the Greetings
+	 */
 	public static function getGreetingsRoute($id = 0, $catid = 0)
 	{
 		if ($id > 0)
@@ -90,8 +88,10 @@ abstract class Hello_worldHelperRoute
 		else
 		{
 			// Initialize the needel array.
-			$needles = array();
-			//Create the link but don't add the id.
+			$needles = array(
+				'greetings'  => array()
+			);
+			// Create the link but don't add the id.
 			$link = 'index.php?option=com_hello_world&view=greetings';
 		}
 		if ($catid > 1)
@@ -198,8 +198,8 @@ abstract class Hello_worldHelperRoute
 			}
 		}
 		return $link;
-	}	
-	
+	}
+
 	protected static function _findItem($needles = null,$type = null)
 	{
 		$app      = JFactory::getApplication();
@@ -247,6 +247,10 @@ abstract class Hello_worldHelperRoute
 							self::$lookup[$language][$view][$item->query['id']] = $item->id;
 						}
 					}
+					else
+					{
+						self::$lookup[$language][$view][0] = $item->id;
+					}
 				}
 			}
 		}
@@ -257,17 +261,24 @@ abstract class Hello_worldHelperRoute
 			{
 				if (isset(self::$lookup[$language][$view]))
 				{
-					foreach ($ids as $id)
+					if (Hello_worldHelper::checkArray($ids))
 					{
-						if (isset(self::$lookup[$language][$view][(int) $id]))
+						foreach ($ids as $id)
 						{
-							return self::$lookup[$language][$view][(int) $id];
+							if (isset(self::$lookup[$language][$view][(int) $id]))
+							{
+								return self::$lookup[$language][$view][(int) $id];
+							}
 						}
+					}
+					elseif (isset(self::$lookup[$language][$view][0]))
+					{
+						return self::$lookup[$language][$view][0];
 					}
 				}
 			}
 		}
-		
+
 		if ($type)
 		{
 			// Check if the global menu item has been set.

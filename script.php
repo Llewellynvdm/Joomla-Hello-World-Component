@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			5th May, 2018
+	@build			12th June, 2019
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		script.php
@@ -22,8 +22,6 @@
 defined('_JEXEC') or die('Restricted access');
 
 JHTML::_('behavior.modal');
-jimport('joomla.installer.installer');
-jimport('joomla.installer.helper');
 
 /**
  * Script File of Hello_world Component
@@ -55,6 +53,168 @@ class com_hello_worldInstallerScript
 
 		// Create a new query object.
 		$query = $db->getQuery(true);
+		// Select ids from fields
+		$query->select($db->quoteName('id'));
+		$query->from($db->quoteName('#__fields'));
+		// Where greeting context is found
+		$query->where( $db->quoteName('context') . ' = '. $db->quote('com_hello_world.greeting') );
+		$db->setQuery($query);
+		// Execute query to see if context is found
+		$db->execute();
+		$greeting_found = $db->getNumRows();
+		// Now check if there were any rows
+		if ($greeting_found)
+		{
+			// Since there are load the needed  greeting field ids
+			$greeting_field_ids = $db->loadColumn();
+			// Remove greeting from the field table
+			$greeting_condition = array( $db->quoteName('context') . ' = '. $db->quote('com_hello_world.greeting') );
+			// Create a new query object.
+			$query = $db->getQuery(true);
+			$query->delete($db->quoteName('#__fields'));
+			$query->where($greeting_condition);
+			$db->setQuery($query);
+			// Execute the query to remove greeting items
+			$greeting_done = $db->execute();
+			if ($greeting_done)
+			{
+				// If succesfully remove greeting add queued success message.
+				$app->enqueueMessage(JText::_('The fields with type (com_hello_world.greeting) context was removed from the <b>#__fields</b> table'));
+			}
+			// Also Remove greeting field values
+			$greeting_condition = array( $db->quoteName('field_id') . ' IN ('. implode(',', $greeting_field_ids) .')');
+			// Create a new query object.
+			$query = $db->getQuery(true);
+			$query->delete($db->quoteName('#__fields_values'));
+			$query->where($greeting_condition);
+			$db->setQuery($query);
+			// Execute the query to remove greeting field values
+			$greeting_done = $db->execute();
+			if ($greeting_done)
+			{
+				// If succesfully remove greeting add queued success message.
+				$app->enqueueMessage(JText::_('The fields values for greeting was removed from the <b>#__fields_values</b> table'));
+			}
+		}
+
+		// Create a new query object.
+		$query = $db->getQuery(true);
+		// Select ids from field groups
+		$query->select($db->quoteName('id'));
+		$query->from($db->quoteName('#__fields_groups'));
+		// Where greeting context is found
+		$query->where( $db->quoteName('context') . ' = '. $db->quote('com_hello_world.greeting') );
+		$db->setQuery($query);
+		// Execute query to see if context is found
+		$db->execute();
+		$greeting_found = $db->getNumRows();
+		// Now check if there were any rows
+		if ($greeting_found)
+		{
+			// Remove greeting from the field groups table
+			$greeting_condition = array( $db->quoteName('context') . ' = '. $db->quote('com_hello_world.greeting') );
+			// Create a new query object.
+			$query = $db->getQuery(true);
+			$query->delete($db->quoteName('#__fields_groups'));
+			$query->where($greeting_condition);
+			$db->setQuery($query);
+			// Execute the query to remove greeting items
+			$greeting_done = $db->execute();
+			if ($greeting_done)
+			{
+				// If succesfully remove greeting add queued success message.
+				$app->enqueueMessage(JText::_('The field groups with type (com_hello_world.greeting) context was removed from the <b>#__fields_groups</b> table'));
+			}
+		}
+
+		// Create a new query object.
+		$query = $db->getQuery(true);
+		// Select id from content type table
+		$query->select($db->quoteName('type_id'));
+		$query->from($db->quoteName('#__content_types'));
+		// Where greeting alias is found
+		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_hello_world.greeting') );
+		$db->setQuery($query);
+		// Execute query to see if alias is found
+		$db->execute();
+		$greeting_found = $db->getNumRows();
+		// Now check if there were any rows
+		if ($greeting_found)
+		{
+			// Since there are load the needed  greeting type ids
+			$greeting_ids = $db->loadColumn();
+			// Remove greeting from the content type table
+			$greeting_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_hello_world.greeting') );
+			// Create a new query object.
+			$query = $db->getQuery(true);
+			$query->delete($db->quoteName('#__content_types'));
+			$query->where($greeting_condition);
+			$db->setQuery($query);
+			// Execute the query to remove greeting items
+			$greeting_done = $db->execute();
+			if ($greeting_done)
+			{
+				// If succesfully remove greeting add queued success message.
+				$app->enqueueMessage(JText::_('The (com_hello_world.greeting) type alias was removed from the <b>#__content_type</b> table'));
+			}
+
+			// Remove greeting items from the contentitem tag map table
+			$greeting_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_hello_world.greeting') );
+			// Create a new query object.
+			$query = $db->getQuery(true);
+			$query->delete($db->quoteName('#__contentitem_tag_map'));
+			$query->where($greeting_condition);
+			$db->setQuery($query);
+			// Execute the query to remove greeting items
+			$greeting_done = $db->execute();
+			if ($greeting_done)
+			{
+				// If succesfully remove greeting add queued success message.
+				$app->enqueueMessage(JText::_('The (com_hello_world.greeting) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
+			}
+
+			// Remove greeting items from the ucm content table
+			$greeting_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_hello_world.greeting') );
+			// Create a new query object.
+			$query = $db->getQuery(true);
+			$query->delete($db->quoteName('#__ucm_content'));
+			$query->where($greeting_condition);
+			$db->setQuery($query);
+			// Execute the query to remove greeting items
+			$greeting_done = $db->execute();
+			if ($greeting_done)
+			{
+				// If succesfully remove greeting add queued success message.
+				$app->enqueueMessage(JText::_('The (com_hello_world.greeting) type alias was removed from the <b>#__ucm_content</b> table'));
+			}
+
+			// Make sure that all the greeting items are cleared from DB
+			foreach ($greeting_ids as $greeting_id)
+			{
+				// Remove greeting items from the ucm base table
+				$greeting_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $greeting_id);
+				// Create a new query object.
+				$query = $db->getQuery(true);
+				$query->delete($db->quoteName('#__ucm_base'));
+				$query->where($greeting_condition);
+				$db->setQuery($query);
+				// Execute the query to remove greeting items
+				$db->execute();
+
+				// Remove greeting items from the ucm history table
+				$greeting_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $greeting_id);
+				// Create a new query object.
+				$query = $db->getQuery(true);
+				$query->delete($db->quoteName('#__ucm_history'));
+				$query->where($greeting_condition);
+				$db->setQuery($query);
+				// Execute the query to remove greeting items
+				$db->execute();
+			}
+		}
+
+		// Create a new query object.
+		$query = $db->getQuery(true);
 		// Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
@@ -78,7 +238,7 @@ class com_hello_worldInstallerScript
 			$db->setQuery($query);
 			// Execute the query to remove Greeting items
 			$greeting_done = $db->execute();
-			if ($greeting_done);
+			if ($greeting_done)
 			{
 				// If succesfully remove Greeting add queued success message.
 				$app->enqueueMessage(JText::_('The (com_hello_world.greeting) type alias was removed from the <b>#__content_type</b> table'));
@@ -93,7 +253,7 @@ class com_hello_worldInstallerScript
 			$db->setQuery($query);
 			// Execute the query to remove Greeting items
 			$greeting_done = $db->execute();
-			if ($greeting_done);
+			if ($greeting_done)
 			{
 				// If succesfully remove Greeting add queued success message.
 				$app->enqueueMessage(JText::_('The (com_hello_world.greeting) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
@@ -108,7 +268,7 @@ class com_hello_worldInstallerScript
 			$db->setQuery($query);
 			// Execute the query to remove Greeting items
 			$greeting_done = $db->execute();
-			if ($greeting_done);
+			if ($greeting_done)
 			{
 				// If succesfully remove Greeting add queued success message.
 				$app->enqueueMessage(JText::_('The (com_hello_world.greeting) type alias was removed from the <b>#__ucm_content</b> table'));
@@ -152,7 +312,7 @@ class com_hello_worldInstallerScript
 		$query->where($hello_world_condition);
 		$db->setQuery($query);
 		$greeting_done = $db->execute();
-		if ($greeting_done);
+		if ($greeting_done)
 		{
 			// If succesfully remove hello_world add queued success message.
 			$app->enqueueMessage(JText::_('All related items was removed from the <b>#__assets</b> table'));

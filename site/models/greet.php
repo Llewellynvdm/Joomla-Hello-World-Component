@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			5th May, 2018
+	@build			12th June, 2019
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		greet.php
@@ -20,9 +20,6 @@
 
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
-
-// import Joomla modelitem library
-jimport('joomla.application.component.modelitem');
 
 /**
  * Hello_world Greet Model
@@ -161,15 +158,14 @@ class Hello_worldModelGreet extends JModelItem
 		}
 
 		return $this->_item[$pk];
-	} 
-
+	}
 
 	/**
-	* Get the uikit needed components
-	*
-	* @return mixed  An array of objects on success.
-	*
-	*/
+	 * Get the uikit needed components
+	 *
+	 * @return mixed  An array of objects on success.
+	 *
+	 */
 	public function getUikitComp()
 	{
 		if (isset($this->uikitComp) && Hello_worldHelper::checkArray($this->uikitComp))
@@ -177,5 +173,5 @@ class Hello_worldModelGreet extends JModelItem
 			return $this->uikitComp;
 		}
 		return false;
-	}  
+	}
 }

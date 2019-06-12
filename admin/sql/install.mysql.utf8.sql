@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS `#__hello_world_greeting` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`greeting` VARCHAR(255) NOT NULL DEFAULT '',
-	`params` text NOT NULL DEFAULT '',
+	`params` text NOT NULL,
 	`published` TINYINT(3) NOT NULL DEFAULT 1,
 	`created_by` INT(10) unsigned NOT NULL DEFAULT 0,
 	`modified_by` INT(10) unsigned NOT NULL DEFAULT 0,
@@ -14,9 +14,9 @@ CREATE TABLE IF NOT EXISTS `#__hello_world_greeting` (
 	`hits` INT(10) unsigned NOT NULL DEFAULT 0,
 	`access` INT(10) unsigned NOT NULL DEFAULT 0,
 	`ordering` INT(11) NOT NULL DEFAULT 0,
-	`metakey` TEXT NOT NULL DEFAULT '',
-	`metadesc` TEXT NOT NULL DEFAULT '',
-	`metadata` TEXT NOT NULL DEFAULT '',
+	`metakey` TEXT NOT NULL,
+	`metadesc` TEXT NOT NULL,
+	`metadata` TEXT NOT NULL,
 	PRIMARY KEY  (`id`),
 	KEY `idx_access` (`access`),
 	KEY `idx_checkout` (`checked_out`),
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `#__hello_world_greeting` (
 	KEY `idx_modifiedby` (`modified_by`),
 	KEY `idx_state` (`published`),
 	KEY `idx_greeting` (`greeting`)
-) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_unicode_ci;
 
 
 

@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			5th May, 2018
+	@build			12th June, 2019
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		default.php
@@ -19,8 +19,8 @@
 /------------------------------------------------------------------------------------------------------*/
 
 // No direct access to this file
-defined('_JEXEC') or die('Restricted access'); 
+defined('_JEXEC') or die('Restricted access');
 
 ?>
-<?php echo $this->toolbar->render(); ?> 
-<h2><?php echo $this->item->greeting; ?></h2>  
+<?php echo $this->toolbar->render(); ?>
+<h2><?php echo $this->item->greeting; ?></h2>

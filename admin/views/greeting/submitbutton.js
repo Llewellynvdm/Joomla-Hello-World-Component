@@ -3,7 +3,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			5th May, 2018
+	@build			12th June, 2019
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		submitbutton.js
@@ -22,19 +22,9 @@ Joomla.submitbutton = function(task)
 	if (task == ''){
 		return false;
 	} else { 
-		var isValid=true;
 		var action = task.split('.');
-		if (action[1] != 'cancel' && action[1] != 'close'){
-			var forms = $$('form.form-validate');
-			for (var i=0;i<forms.length;i++){
-				if (!document.formvalidator.isValid(forms[i])){
-					isValid = false;
-					break;
-				}
-			}
-		}
-		if (isValid){
-			Joomla.submitform(task);
+		if (action[1] == 'cancel' || action[1] == 'close' || document.formvalidator.isValid(document.getElementById("adminForm"))){
+			Joomla.submitform(task, document.getElementById("adminForm"));
 			return true;
 		} else {
 			alert(Joomla.JText._('greeting, some values are not acceptable.','Some values are unacceptable'));

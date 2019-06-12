@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			5th May, 2018
+	@build			12th June, 2019
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		greeting.php
@@ -22,9 +22,6 @@
 defined('_JEXEC') or die('Restricted access');
 
 use Joomla\Registry\Registry;
-
-// import Joomla table library
-jimport('joomla.database.table');
 
 /**
  * Greetings Table class
@@ -49,7 +46,7 @@ class Hello_worldTableGreeting extends JTable
 		parent::__construct('#__hello_world_greeting', 'id', $db);
 
 		// Adding History Options
-		JTableObserverContenthistory::createObserver($this, array('typeAlias' => 'com_hello_world.greeting')); 
+		JTableObserverContenthistory::createObserver($this, array('typeAlias' => 'com_hello_world.greeting'));
 	}	
  
 	public function bind($array, $ignore = '')
@@ -232,7 +229,7 @@ class Hello_worldTableGreeting extends JTable
 		{
 			// asset alread set so use saved rules
 			$assetId = (int) $db->loadResult();
-			return JAccess::getAssetRules($assetId);
+			return JAccess::getAssetRules($assetId); // (TODO) instead of keeping inherited Allowed it becomes Allowed.
 		}
 		// try again
 		elseif ($try)
@@ -321,10 +318,10 @@ class Hello_worldTableGreeting extends JTable
 	}
 
 	/**
-	* This view does not actually have an alias
-	*
-	* @return  bool
-	*/
+	 * This view does not actually have an alias
+	 *
+	 * @return  bool
+	 */
 	public function generateAlias()
 	{
 		return false;

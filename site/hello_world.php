@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			5th May, 2018
+	@build			12th June, 2019
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		hello_world.php
@@ -20,6 +20,7 @@
 
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
+JHtml::_('behavior.tabstate');
 
 // Set the component css/js
 $document = JFactory::getDocument();
@@ -27,18 +28,14 @@ $document->addStyleSheet('components/com_hello_world/assets/css/site.css');
 $document->addScript('components/com_hello_world/assets/js/site.js');
 
 // Require helper files
-JLoader::register('Hello_worldHelper', dirname(__FILE__) . '/helpers/hello_world.php'); 
-JLoader::register('Hello_worldHelperRoute', dirname(__FILE__) . '/helpers/route.php'); 
-
-// import joomla controller library
-jimport('joomla.application.component.controller');
+JLoader::register('Hello_worldHelper', __DIR__ . '/helpers/hello_world.php'); 
+JLoader::register('Hello_worldHelperRoute', __DIR__ . '/helpers/route.php'); 
 
 // Get an instance of the controller prefixed by Hello_world
 $controller = JControllerLegacy::getInstance('Hello_world');
 
 // Perform the request task
-$jinput = JFactory::getApplication()->input;
-$controller->execute($jinput->get('task', null, 'CMD'));
+$controller->execute(JFactory::getApplication()->input->get('task'));
 
 // Redirect if set by the controller
 $controller->redirect();

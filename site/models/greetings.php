@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			5th May, 2018
+	@build			12th June, 2019
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		greetings.php
@@ -20,9 +20,6 @@
 
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
-
-// import the Joomla modellist library
-jimport('joomla.application.component.modellist');
 
 /**
  * Hello_world Model for Greetings
@@ -96,7 +93,7 @@ class Hello_worldModelGreetings extends JModelList
 			// redirect away to the home page if no access allowed.
 			$app->redirect(JURI::root());
 			return false;
-		}  
+		}
 		// load parent items
 		$items = parent::getItems();
 
@@ -111,19 +108,18 @@ class Hello_worldModelGreetings extends JModelList
 				// Always create a slug for sef URL's
 				$item->slug = (isset($item->alias) && isset($item->id)) ? $item->id.':'.$item->alias : $item->id;
 			}
-		} 
+		}
 
 		// return items
 		return $items;
-	} 
-
+	}
 
 	/**
-	* Get the uikit needed components
-	*
-	* @return mixed  An array of objects on success.
-	*
-	*/
+	 * Get the uikit needed components
+	 *
+	 * @return mixed  An array of objects on success.
+	 *
+	 */
 	public function getUikitComp()
 	{
 		if (isset($this->uikitComp) && Hello_worldHelper::checkArray($this->uikitComp))
@@ -131,5 +127,5 @@ class Hello_worldModelGreetings extends JModelList
 			return $this->uikitComp;
 		}
 		return false;
-	}  
+	}
 }

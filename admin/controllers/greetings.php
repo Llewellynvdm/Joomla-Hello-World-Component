@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			5th May, 2018
+	@build			12th June, 2019
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		greetings.php
@@ -21,24 +21,33 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-// import Joomla controlleradmin library
-jimport('joomla.application.component.controlleradmin');
-
 /**
  * Greetings Controller
  */
 class Hello_worldControllerGreetings extends JControllerAdmin
 {
-	protected $text_prefix = 'COM_HELLO_WORLD_GREETINGS';
 	/**
-	 * Proxy for getModel.
-	 * @since	2.5
+	 * The prefix to use with controller messages.
+	 *
+	 * @var    string
+	 * @since  1.6
 	 */
-	public function getModel($name = 'Greeting', $prefix = 'Hello_worldModel', $config = array())
+	protected $text_prefix = 'COM_HELLO_WORLD_GREETINGS';
+
+	/**
+	 * Method to get a model object, loading it if required.
+	 *
+	 * @param   string  $name    The model name. Optional.
+	 * @param   string  $prefix  The class prefix. Optional.
+	 * @param   array   $config  Configuration array for model. Optional.
+	 *
+	 * @return  JModelLegacy  The model.
+	 *
+	 * @since   1.6
+	 */
+	public function getModel($name = 'Greeting', $prefix = 'Hello_worldModel', $config = array('ignore_request' => true))
 	{
-		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
-		
-		return $model;
+		return parent::getModel($name, $prefix, $config);
 	}
 
 	public function exportData()
@@ -102,5 +111,5 @@ class Hello_worldControllerGreetings extends JControllerAdmin
 		$message = JText::_('COM_HELLO_WORLD_IMPORT_FAILED');
 		$this->setRedirect(JRoute::_('index.php?option=com_hello_world&view=greetings', false), $message, 'error');
 		return;
-	}  
+	}
 }

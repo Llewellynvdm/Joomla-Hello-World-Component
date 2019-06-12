@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			5th May, 2018
+	@build			12th June, 2019
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		edit.php
@@ -26,7 +26,7 @@ JHtml::_('behavior.tooltip');
 JHtml::_('behavior.formvalidation');
 JHtml::_('formbehavior.chosen', 'select');
 JHtml::_('behavior.keepalive');
-$componentParams = JComponentHelper::getParams('com_hello_world');
+$componentParams = $this->params; // will be removed just use $this->params instead
 ?>
 <script type="text/javascript">
 	// waiting spinner
@@ -51,7 +51,7 @@ $componentParams = JComponentHelper::getParams('com_hello_world');
 	});
 </script>
 <div id="hello_world_loader" style="display: none;">
-<form action="<?php echo JRoute::_('index.php?option=com_hello_world&layout=edit&id='.(int) $this->item->id.$this->referral); ?>" method="post" name="adminForm" id="adminForm" class="form-validate" enctype="multipart/form-data">
+<form action="<?php echo JRoute::_('index.php?option=com_hello_world&layout=edit&id='. (int) $this->item->id . $this->referral); ?>" method="post" name="adminForm" id="adminForm" class="form-validate" enctype="multipart/form-data">
 
 <div class="form-horizontal">
 
@@ -64,6 +64,10 @@ $componentParams = JComponentHelper::getParams('com_hello_world');
 			</div>
 		</div>
 	<?php echo JHtml::_('bootstrap.endTab'); ?>
+
+	<?php $this->ignore_fieldsets = array('details','metadata','vdmmetadata','accesscontrol'); ?>
+	<?php $this->tab_name = 'greetingTab'; ?>
+	<?php echo JLayoutHelper::render('joomla.edit.params', $this); ?>
 
 	<?php if ($this->canDo->get('core.delete') || $this->canDo->get('core.edit.created_by') || $this->canDo->get('core.edit.state') || $this->canDo->get('core.edit.created')) : ?>
 	<?php echo JHtml::_('bootstrap.addTab', 'greetingTab', 'publishing', JText::_('COM_HELLO_WORLD_GREETING_PUBLISHING', true)); ?>
@@ -102,7 +106,6 @@ $componentParams = JComponentHelper::getParams('com_hello_world');
 	<div>
 		<input type="hidden" name="task" value="greeting.edit" />
 		<?php echo JHtml::_('form.token'); ?>
-	</div>
 	</div>
 </div>
 </form>
