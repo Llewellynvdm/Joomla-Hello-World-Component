@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			12th June, 2019
+	@build			14th August, 2019
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		default.php
@@ -23,4 +23,7 @@ defined('_JEXEC') or die('Restricted access');
 
 ?>
 <?php echo $this->toolbar->render(); ?>
-<h2><?php echo $this->item->greeting; ?></h2>
+
+<!--[JCBGUI.site_view.default.51.$$$$]-->
+<h2><?php echo $this->item->greeting; ?></h2><!--[/JCBGUI$$$$]-->
+

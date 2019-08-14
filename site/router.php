@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			12th June, 2019
+	@build			14th August, 2019
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		router.php
@@ -184,6 +184,8 @@ class Hello_worldRouter extends JComponentRouterBase
 		{
 			$getTable = '#__categories';
 			$query->from($db->quoteName($getTable));
+			// we need this to target the components categories (TODO will keep an eye on this)
+			$query->where($db->quoteName('extension') . ' LIKE '. $db->quote((string)'com_' . $main . '%'));
 		}
 		else
 		{

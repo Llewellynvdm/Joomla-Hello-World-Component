@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			12th June, 2019
+	@build			14th August, 2019
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		greeting.php
@@ -27,13 +27,26 @@ use Joomla\Registry\Registry;
  * Hello_world Greeting Model
  */
 class Hello_worldModelGreeting extends JModelAdmin
-{    
+{
+	/**
+	 * The tab layout fields array.
+	 *
+	 * @var      array
+	 */
+	protected $tabLayoutFields = array(
+		'details' => array(
+			'left' => array(
+				'greeting'
+			)
+		)
+	);
+
 	/**
 	 * @var        string    The prefix to use with controller messages.
 	 * @since   1.6
 	 */
 	protected $text_prefix = 'COM_HELLO_WORLD';
-    
+
 	/**
 	 * The type alias for this content type.
 	 *
