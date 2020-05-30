@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			14th August, 2019
+	@build			30th May, 2020
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		view.html.php
@@ -43,8 +43,9 @@ class Hello_worldViewGreetings extends JViewLegacy
 		$this->pagination = $this->get('Pagination');
 		$this->state = $this->get('State');
 		$this->user = JFactory::getUser();
-		$this->listOrder = $this->escape($this->state->get('list.ordering'));
-		$this->listDirn = $this->escape($this->state->get('list.direction'));
+		// Add the list ordering clause.
+		$this->listOrder = $this->escape($this->state->get('list.ordering', 'a.id'));
+		$this->listDirn = $this->escape($this->state->get('list.direction', 'asc'));
 		$this->saveOrder = $this->listOrder == 'ordering';
 		// set the return here value
 		$this->return_here = urlencode(base64_encode((string) JUri::getInstance()));
@@ -237,7 +238,7 @@ class Hello_worldViewGreetings extends JViewLegacy
 	protected function getSortFields()
 	{
 		return array(
-			'a.sorting' => JText::_('JGRID_HEADING_ORDERING'),
+			'ordering' => JText::_('JGRID_HEADING_ORDERING'),
 			'a.published' => JText::_('JSTATUS'),
 			'a.greeting' => JText::_('COM_HELLO_WORLD_GREETING_GREETING_LABEL'),
 			'a.id' => JText::_('JGRID_HEADING_ID')

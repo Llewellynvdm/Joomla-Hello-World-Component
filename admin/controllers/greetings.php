@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			14th August, 2019
+	@build			30th May, 2020
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		greetings.php
@@ -20,6 +20,8 @@
 
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
+
+use Joomla\Utilities\ArrayHelper;
 
 /**
  * Greetings Controller
@@ -62,7 +64,7 @@ class Hello_worldControllerGreetings extends JControllerAdmin
 			$input = JFactory::getApplication()->input;
 			$pks = $input->post->get('cid', array(), 'array');
 			// Sanitize the input
-			JArrayHelper::toInteger($pks);
+			ArrayHelper::toInteger($pks);
 			// Get the model
 			$model = $this->getModel('Greetings');
 			// get the data to export

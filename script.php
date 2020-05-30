@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			14th August, 2019
+	@build			30th May, 2020
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		script.php
@@ -324,6 +324,56 @@ class com_hello_worldInstallerScript
 			$app->enqueueMessage(JText::_('All related items was removed from the <b>#__assets</b> table'));
 		}
 
+
+		// Set db if not set already.
+		if (!isset($db))
+		{
+			$db = JFactory::getDbo();
+		}
+		// Set app if not set already.
+		if (!isset($app))
+		{
+			$app = JFactory::getApplication();
+		}
+		// Remove Hello_world from the action_logs_extensions table
+		$hello_world_action_logs_extensions = array( $db->quoteName('extension') . ' = ' . $db->quote('com_hello_world') );
+		// Create a new query object.
+		$query = $db->getQuery(true);
+		$query->delete($db->quoteName('#__action_logs_extensions'));
+		$query->where($hello_world_action_logs_extensions);
+		$db->setQuery($query);
+		// Execute the query to remove Hello_world
+		$hello_world_removed_done = $db->execute();
+		if ($hello_world_removed_done)
+		{
+			// If successfully remove Hello_world add queued success message.
+			$app->enqueueMessage(JText::_('The com_hello_world extension was removed from the <b>#__action_logs_extensions</b> table'));
+		}
+
+		// Set db if not set already.
+		if (!isset($db))
+		{
+			$db = JFactory::getDbo();
+		}
+		// Set app if not set already.
+		if (!isset($app))
+		{
+			$app = JFactory::getApplication();
+		}
+		// Remove Hello_world Greeting from the action_log_config table
+		$greeting_action_log_config = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_hello_world.greeting') );
+		// Create a new query object.
+		$query = $db->getQuery(true);
+		$query->delete($db->quoteName('#__action_log_config'));
+		$query->where($greeting_action_log_config);
+		$db->setQuery($query);
+		// Execute the query to remove com_hello_world.greeting
+		$greeting_action_log_config_done = $db->execute();
+		if ($greeting_action_log_config_done)
+		{
+			// If successfully removed Hello_world Greeting add queued success message.
+			$app->enqueueMessage(JText::_('The com_hello_world.greeting type alias was removed from the <b>#__action_log_config</b> table'));
+		}
 		// little notice as after service, in case of bad experience with component.
 		echo '<h2>Did something go wrong? Are you disappointed?</h2>
 		<p>Please let me know at <a href="mailto:joomla@vdm.io">joomla@vdm.io</a>.
@@ -373,6 +423,14 @@ class com_hello_worldInstallerScript
 		if ($type === 'install')
 		{
 		}
+		// check if the PHPExcel stuff is still around
+		if (JFile::exists(JPATH_ADMINISTRATOR . '/components/com_hello_world/helpers/PHPExcel.php'))
+		{
+			// We need to remove this old PHPExcel folder
+			$this->removeFolder(JPATH_ADMINISTRATOR . '/components/com_hello_world/helpers/PHPExcel');
+			// We need to remove this old PHPExcel file
+			JFile::delete(JPATH_ADMINISTRATOR . '/components/com_hello_world/helpers/PHPExcel.php');
+		}
 		return true;
 	}
 
@@ -388,6 +446,8 @@ class com_hello_worldInstallerScript
 	{
 		// get application
 		$app = JFactory::getApplication();
+		// We check if we have dynamic folders to copy
+		$this->setDynamicF0ld3rs($app, $parent);
 		// set the default component settings
 		if ($type === 'install')
 		{
@@ -439,6 +499,35 @@ class com_hello_worldInstallerScript
 			echo '<a target="_blank" href="https://www.vdm.io" title="Hello World">
 				<img src="components/com_hello_world/assets/images/vdm-component.jpg"/>
 				</a>';
+
+			// Set db if not set already.
+			if (!isset($db))
+			{
+				$db = JFactory::getDbo();
+			}
+			// Create the hello_world action logs extensions object.
+			$hello_world_action_logs_extensions = new stdClass();
+			$hello_world_action_logs_extensions->extension = 'com_hello_world';
+
+			// Set the object into the action logs extensions table.
+			$hello_world_action_logs_extensions_Inserted = $db->insertObject('#__action_logs_extensions', $hello_world_action_logs_extensions);
+
+			// Set db if not set already.
+			if (!isset($db))
+			{
+				$db = JFactory::getDbo();
+			}
+			// Create the greeting action log config object.
+			$greeting_action_log_config = new stdClass();
+			$greeting_action_log_config->type_title = 'GREETING';
+			$greeting_action_log_config->type_alias = 'com_hello_world.greeting';
+			$greeting_action_log_config->id_holder = 'id';
+			$greeting_action_log_config->title_holder = 'greeting';
+			$greeting_action_log_config->table_name = '#__hello_world_greeting';
+			$greeting_action_log_config->text_prefix = 'COM_HELLO_WORLD';
+
+			// Set the object into the action log config table.
+			$greeting_Inserted = $db->insertObject('#__action_log_config', $greeting_action_log_config);
 		}
 		// do any updates needed
 		if ($type === 'update')
@@ -481,7 +570,200 @@ class com_hello_worldInstallerScript
 				<img src="components/com_hello_world/assets/images/vdm-component.jpg"/>
 				</a>
 				<h3>Upgrade to Version 1.0.0 Was Successful! Let us know if anything is not working as expected.</h3>';
+
+			// Set db if not set already.
+			if (!isset($db))
+			{
+				$db = JFactory::getDbo();
+			}
+			// Create the hello_world action logs extensions object.
+			$hello_world_action_logs_extensions = new stdClass();
+			$hello_world_action_logs_extensions->extension = 'com_hello_world';
+
+			// Check if hello_world action log extension is already in action logs extensions DB.
+			$query = $db->getQuery(true);
+			$query->select($db->quoteName(array('id')));
+			$query->from($db->quoteName('#__action_logs_extensions'));
+			$query->where($db->quoteName('extension') . ' LIKE '. $db->quote($hello_world_action_logs_extensions->extension));
+			$db->setQuery($query);
+			$db->execute();
+
+			// Set the object into the action logs extensions table if not found.
+			if (!$db->getNumRows())
+			{
+				$hello_world_action_logs_extensions_Inserted = $db->insertObject('#__action_logs_extensions', $hello_world_action_logs_extensions);
+			}
+
+			// Set db if not set already.
+			if (!isset($db))
+			{
+				$db = JFactory::getDbo();
+			}
+			// Create the greeting action log config object.
+			$greeting_action_log_config = new stdClass();
+			$greeting_action_log_config->id = null;
+			$greeting_action_log_config->type_title = 'GREETING';
+			$greeting_action_log_config->type_alias = 'com_hello_world.greeting';
+			$greeting_action_log_config->id_holder = 'id';
+			$greeting_action_log_config->title_holder = 'greeting';
+			$greeting_action_log_config->table_name = '#__hello_world_greeting';
+			$greeting_action_log_config->text_prefix = 'COM_HELLO_WORLD';
+
+			// Check if greeting action log config is already in action_log_config DB.
+			$query = $db->getQuery(true);
+			$query->select($db->quoteName(array('id')));
+			$query->from($db->quoteName('#__action_log_config'));
+			$query->where($db->quoteName('type_alias') . ' LIKE '. $db->quote($greeting_action_log_config->type_alias));
+			$db->setQuery($query);
+			$db->execute();
+
+			// Set the object into the content types table.
+			if ($db->getNumRows())
+			{
+				$greeting_action_log_config->id = $db->loadResult();
+				$greeting_action_log_config_Updated = $db->updateObject('#__action_log_config', $greeting_action_log_config, 'id');
+			}
+			else
+			{
+				$greeting_action_log_config_Inserted = $db->insertObject('#__action_log_config', $greeting_action_log_config);
+			}
 		}
 		return true;
+	}
+
+	/**
+	 * Remove folders with files
+	 * 
+	 * @param   string   $dir     The path to folder to remove
+	 * @param   boolean  $ignore  The folders and files to ignore and not remove
+	 *
+	 * @return  boolean   True in all is removed
+	 * 
+	 */
+	protected function removeFolder($dir, $ignore = false)
+	{
+		if (JFolder::exists($dir))
+		{
+			$it = new RecursiveDirectoryIterator($dir);
+			$it = new RecursiveIteratorIterator($it, RecursiveIteratorIterator::CHILD_FIRST);
+			// remove ending /
+			$dir = rtrim($dir, '/');
+			// now loop the files & folders
+			foreach ($it as $file)
+			{
+				if ('.' === $file->getBasename() || '..' ===  $file->getBasename()) continue;
+				// set file dir
+				$file_dir = $file->getPathname();
+				// check if this is a dir or a file
+				if ($file->isDir())
+				{
+					$keeper = false;
+					if ($this->checkArray($ignore))
+					{
+						foreach ($ignore as $keep)
+						{
+							if (strpos($file_dir, $dir.'/'.$keep) !== false)
+							{
+								$keeper = true;
+							}
+						}
+					}
+					if ($keeper)
+					{
+						continue;
+					}
+					JFolder::delete($file_dir);
+				}
+				else
+				{
+					$keeper = false;
+					if ($this->checkArray($ignore))
+					{
+						foreach ($ignore as $keep)
+						{
+							if (strpos($file_dir, $dir.'/'.$keep) !== false)
+							{
+								$keeper = true;
+							}
+						}
+					}
+					if ($keeper)
+					{
+						continue;
+					}
+					JFile::delete($file_dir);
+				}
+			}
+			// delete the root folder if not ignore found
+			if (!$this->checkArray($ignore))
+			{
+				return JFolder::delete($dir);
+			}
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Check if have an array with a length
+	 *
+	 * @input	array   The array to check
+	 *
+	 * @returns bool/int  number of items in array on success
+	 */
+	protected function checkArray($array, $removeEmptyString = false)
+	{
+		if (isset($array) && is_array($array) && ($nr = count((array)$array)) > 0)
+		{
+			// also make sure the empty strings are removed
+			if ($removeEmptyString)
+			{
+				foreach ($array as $key => $string)
+				{
+					if (empty($string))
+					{
+						unset($array[$key]);
+					}
+				}
+				return $this->checkArray($array, false);
+			}
+			return $nr;
+		}
+		return false;
+	}
+
+	/**
+	 * Method to set/copy dynamic folders into place (use with caution)
+	 *
+	 * @return void
+	 */
+	protected function setDynamicF0ld3rs($app, $parent)
+	{
+		// get the instalation path
+		$installer = $parent->getParent();
+		$installPath = $installer->getPath('source');
+		// get all the folders
+		$folders = JFolder::folders($installPath);
+		// check if we have folders we may want to copy
+		$doNotCopy = array('media','admin','site'); // Joomla already deals with these
+		if (count((array) $folders) > 1)
+		{
+			foreach ($folders as $folder)
+			{
+				// Only copy if not a standard folders
+				if (!in_array($folder, $doNotCopy))
+				{
+					// set the source path
+					$src = $installPath.'/'.$folder;
+					// set the destination path
+					$dest = JPATH_ROOT.'/'.$folder;
+					// now try to copy the folder
+					if (!JFolder::copy($src, $dest, '', true))
+					{
+						$app->enqueueMessage('Could not copy '.$folder.' folder into place, please make sure destination is writable!', 'error');
+					}
+				}
+			}
+		}
 	}
 }

@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			14th August, 2019
+	@build			30th May, 2020
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		greetings.php
@@ -20,6 +20,8 @@
 
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
+
+use Joomla\Utilities\ArrayHelper;
 
 /**
  * Greetings Model
@@ -161,7 +163,7 @@ class Hello_worldModelGreetings extends JModelList
 
 		// Add the list ordering clause.
 		$orderCol = $this->state->get('list.ordering', 'a.id');
-		$orderDirn = $this->state->get('list.direction', 'asc');	
+		$orderDirn = $this->state->get('list.direction', 'asc');
 		if ($orderCol != '')
 		{
 			$query->order($db->escape($orderCol . ' ' . $orderDirn));
@@ -173,17 +175,23 @@ class Hello_worldModelGreetings extends JModelList
 	/**
 	 * Method to get list export data.
 	 *
+	 * @param   array  $pks  The ids of the items to get
+	 * @param   JUser  $user  The user making the request
+	 *
 	 * @return mixed  An array of data items on success, false on failure.
 	 */
-	public function getExportData($pks)
+	public function getExportData($pks, $user = null)
 	{
 		// setup the query
 		if (Hello_worldHelper::checkArray($pks))
 		{
-			// Set a value to know this is exporting method.
+			// Set a value to know this is export method. (USE IN CUSTOM CODE TO ALTER OUTCOME)
 			$_export = true;
-			// Get the user object.
-			$user = JFactory::getUser();
+			// Get the user object if not set.
+			if (!isset($user) || !Hello_worldHelper::checkObject($user))
+			{
+				$user = JFactory::getUser();
+			}
 			// Create a new query object.
 			$db = JFactory::getDBO();
 			$query = $db->getQuery(true);
@@ -211,7 +219,7 @@ class Hello_worldModelGreetings extends JModelList
 			{
 				$items = $db->loadObjectList();
 
-				// set values to display correctly.
+				// Set values to display correctly.
 				if (Hello_worldHelper::checkArray($items))
 				{
 					foreach ($items as $nr => &$item)

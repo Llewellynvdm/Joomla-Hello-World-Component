@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			14th August, 2019
+	@build			30th May, 2020
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		default_head.php
@@ -39,11 +39,11 @@ defined('_JEXEC') or die('Restricted access');
 		</th>
 	<?php endif; ?>
 	<th class="nowrap" >
-			<?php echo JHtml::_('grid.sort', 'COM_HELLO_WORLD_GREETING_GREETING_LABEL', 'greeting', $this->listDirn, $this->listOrder); ?>
+			<?php echo JHtml::_('grid.sort', 'COM_HELLO_WORLD_GREETING_GREETING_LABEL', 'a.greeting', $this->listDirn, $this->listOrder); ?>
 	</th>
 	<?php if ($this->canState): ?>
 		<th width="10" class="nowrap center" >
-			<?php echo JHtml::_('grid.sort', 'COM_HELLO_WORLD_GREETING_STATUS', 'published', $this->listDirn, $this->listOrder); ?>
+			<?php echo JHtml::_('grid.sort', 'COM_HELLO_WORLD_GREETING_STATUS', 'a.published', $this->listDirn, $this->listOrder); ?>
 		</th>
 	<?php else: ?>
 		<th width="10" class="nowrap center" >
@@ -51,6 +51,6 @@ defined('_JEXEC') or die('Restricted access');
 		</th>
 	<?php endif; ?>
 	<th width="5" class="nowrap center hidden-phone" >
-			<?php echo JHtml::_('grid.sort', 'COM_HELLO_WORLD_GREETING_ID', 'id', $this->listDirn, $this->listOrder); ?>
+			<?php echo JHtml::_('grid.sort', 'COM_HELLO_WORLD_GREETING_ID', 'a.id', $this->listDirn, $this->listOrder); ?>
 	</th>
 </tr>

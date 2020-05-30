@@ -18,12 +18,12 @@ CREATE TABLE IF NOT EXISTS `#__hello_world_greeting` (
 	`metadesc` TEXT NOT NULL,
 	`metadata` TEXT NOT NULL,
 	PRIMARY KEY  (`id`),
+	KEY `idx_greeting` (`greeting`),
 	KEY `idx_access` (`access`),
 	KEY `idx_checkout` (`checked_out`),
 	KEY `idx_createdby` (`created_by`),
 	KEY `idx_modifiedby` (`modified_by`),
-	KEY `idx_state` (`published`),
-	KEY `idx_greeting` (`greeting`)
+	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_unicode_ci;
 
 

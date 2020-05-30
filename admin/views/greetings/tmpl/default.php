@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			14th August, 2019
+	@build			30th May, 2020
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		default.php
@@ -84,8 +84,8 @@ if ($this->saveOrder)
                 $this->loadTemplate('batch_body')
             ); ?>
         <?php endif; ?>
-		<input type="hidden" name="filter_order" value="" />
-		<input type="hidden" name="filter_order_Dir" value="" />
+		<input type="hidden" name="filter_order" value="<?php echo $this->listOrder; ?>" />
+		<input type="hidden" name="filter_order_Dir" value="<?php echo $this->listDirn; ?>" />
 		<input type="hidden" name="boxchecked" value="0" />
 	</div>
 <?php endif; ?>
