@@ -3,8 +3,8 @@
 				VDM 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.0
-	@build			30th May, 2020
+	@version		1.0.1
+	@build			4th January, 2021
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		hello_world.php
@@ -62,8 +62,8 @@ class Hello_worldModelHello_world extends JModelList
 							$viewName 	= $name;
 							$alt 		= $name;
 							$url 		= $url;
-							$image 		= $name.'.'.$type;
-							$name 		= 'COM_HELLO_WORLD_DASHBOARD_'.Hello_worldHelper::safeString($name,'U');
+							$image 		= $name . '.' . $type;
+							$name 		= 'COM_HELLO_WORLD_DASHBOARD_' . Hello_worldHelper::safeString($name,'U');
 						}
 					}
 					// internal views
@@ -85,17 +85,27 @@ class Hello_worldModelHello_world extends JModelList
 							switch($action)
 							{
 								case 'add':
-									$url 	= 'index.php?option=com_hello_world&view='.$name.'&layout=edit';
-									$image 	= $name.'_'.$action.'.'.$type;
-									$alt 	= $name.'&nbsp;'.$action;
+									$url	= 'index.php?option=com_hello_world&view=' . $name . '&layout=edit';
+									$image	= $name . '_' . $action.  '.' . $type;
+									$alt	= $name . '&nbsp;' . $action;
 									$name	= 'COM_HELLO_WORLD_DASHBOARD_'.Hello_worldHelper::safeString($name,'U').'_ADD';
 									$add	= true;
 								break;
 								default:
-									$url 	= 'index.php?option=com_categories&view=categories&extension=com_hello_world.'.$name;
-									$image 	= $name.'_'.$action.'.'.$type;
-									$alt 	= $name.'&nbsp;'.$action;
-									$name	= 'COM_HELLO_WORLD_DASHBOARD_'.Hello_worldHelper::safeString($name,'U').'_'.Hello_worldHelper::safeString($action,'U');
+									// check for new convention (more stable)
+									if (strpos($action, '_qpo0O0oqp_') !== false)
+									{
+										list($action, $extension) = (array) explode('_qpo0O0oqp_', $action);
+										$extension = str_replace('_po0O0oq_', '.', $extension);
+									}
+									else
+									{
+										$extension = 'com_hello_world.' . $name;
+									}
+									$url	= 'index.php?option=com_categories&view=categories&extension=' . $extension;
+									$image	= $name . '_' . $action . '.' . $type;
+									$alt	= $viewName . '&nbsp;' . $action;
+									$name	= 'COM_HELLO_WORLD_DASHBOARD_' . Hello_worldHelper::safeString($name,'U') . '_' . Hello_worldHelper::safeString($action,'U');
 								break;
 							}
 						}
@@ -103,9 +113,9 @@ class Hello_worldModelHello_world extends JModelList
 						{
 							$viewName 	= $name;
 							$alt 		= $name;
-							$url 		= 'index.php?option=com_hello_world&view='.$name;
-							$image 		= $name.'.'.$type;
-							$name 		= 'COM_HELLO_WORLD_DASHBOARD_'.Hello_worldHelper::safeString($name,'U');
+							$url 		= 'index.php?option=com_hello_world&view=' . $name;
+							$image 		= $name . '.' . $type;
+							$name 		= 'COM_HELLO_WORLD_DASHBOARD_' . Hello_worldHelper::safeString($name,'U');
 							$hover		= false;
 						}
 					}
@@ -113,8 +123,8 @@ class Hello_worldModelHello_world extends JModelList
 					{
 						$viewName 	= $view;
 						$alt 		= $view;
-						$url 		= 'index.php?option=com_hello_world&view='.$view;
-						$image 		= $view.'.png';
+						$url 		= 'index.php?option=com_hello_world&view=' . $view;
+						$image 		= $view . '.png';
 						$name 		= ucwords($view).'<br /><br />';
 						$hover		= false;
 					}
@@ -126,7 +136,7 @@ class Hello_worldModelHello_world extends JModelList
 						$dashboard_list = false;
 						$accessTo = '';
 						$accessAdd = '';
-						// acces checking start
+						// access checking start
 						$accessCreate = (isset($viewAccess[$viewName.'.create'])) ? Hello_worldHelper::checkString($viewAccess[$viewName.'.create']):false;
 						$accessAccess = (isset($viewAccess[$viewName.'.access'])) ? Hello_worldHelper::checkString($viewAccess[$viewName.'.access']):false;
 						// set main controllers
@@ -141,7 +151,7 @@ class Hello_worldModelHello_world extends JModelList
 						{
 							$accessAdd = 'core.create';
 						}
-						// check if acces to view is set
+						// check if access to view is set
 						if ($accessAccess)
 						{
 							$accessTo = $viewAccess[$viewName.'.access'];

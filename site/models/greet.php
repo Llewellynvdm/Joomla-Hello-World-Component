@@ -3,8 +3,8 @@
 				VDM 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.0
-	@build			30th May, 2020
+	@version		1.0.1
+	@build			4th January, 2021
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		greet.php
@@ -149,7 +149,7 @@ class Hello_worldModelGreet extends JModelItem
 				if ($e->getCode() == 404)
 				{
 					// Need to go thru the error handler to allow Redirect to work.
-					JError::raiseWaring(404, $e->getMessage());
+					JError::raiseWarning(404, $e->getMessage());
 				}
 				else
 				{

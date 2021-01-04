@@ -3,8 +3,8 @@
 				VDM 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.0
-	@build			30th May, 2020
+	@version		1.0.1
+	@build			4th January, 2021
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		view.html.php
@@ -86,10 +86,7 @@ class Hello_worldViewGreeting extends JViewLegacy
 	 * Setting the toolbar
 	 */
 	protected function addToolBar()
-	{
-		// adding the joomla edit toolbar to the front
-		JLoader::register('JToolbarHelper', JPATH_ADMINISTRATOR.'/includes/toolbar.php');
-		JFactory::getApplication()->input->set('hidemainmenu', true);
+	{JFactory::getApplication()->input->set('hidemainmenu', true);
 		$user = JFactory::getUser();
 		$userId	= $user->id;
 		$isNew = $this->item->id == 0;

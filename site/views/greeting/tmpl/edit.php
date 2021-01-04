@@ -3,8 +3,8 @@
 				VDM 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.0
-	@build			30th May, 2020
+	@version		1.0.1
+	@build			4th January, 2021
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		edit.php
@@ -28,8 +28,8 @@ JHtml::_('formbehavior.chosen', 'select');
 JHtml::_('behavior.keepalive');
 JHtml::_('behavior.tabstate');
 JHtml::_('behavior.calendar');
-$componentParams = $this->params; // will be removed just use $this->params instead
 ?>
+<div class="hello_world-greeting">
 <?php echo $this->toolbar->render(); ?>
 <form action="<?php echo JRoute::_('index.php?option=com_hello_world&layout=edit&id='. (int) $this->item->id . $this->referral); ?>" method="post" name="adminForm" id="adminForm" class="form-validate" enctype="multipart/form-data">
 
@@ -49,7 +49,7 @@ $componentParams = $this->params; // will be removed just use $this->params inst
 	<?php $this->tab_name = 'greetingTab'; ?>
 	<?php echo JLayoutHelper::render('joomla.edit.params', $this); ?>
 
-	<?php if ($this->canDo->get('core.delete') || $this->canDo->get('core.edit.created_by') || $this->canDo->get('core.edit.state') || $this->canDo->get('core.edit.created')) : ?>
+	<?php if ($this->canDo->get('core.edit.created_by') || $this->canDo->get('core.edit.created') || $this->canDo->get('core.edit.state') || ($this->canDo->get('core.delete') && $this->canDo->get('core.edit.state'))) : ?>
 	<?php echo JHtml::_('bootstrap.addTab', 'greetingTab', 'publishing', JText::_('COM_HELLO_WORLD_GREETING_PUBLISHING', true)); ?>
 		<div class="row-fluid form-horizontal-desktop">
 			<div class="span6">
@@ -89,3 +89,4 @@ $componentParams = $this->params; // will be removed just use $this->params inst
 	</div>
 </div>
 </form>
+</div>

@@ -3,8 +3,8 @@
 				VDM 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.0
-	@build			30th May, 2020
+	@version		1.0.1
+	@build			4th January, 2021
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		publishing.php
@@ -35,6 +35,7 @@ $fields_tab_layout = 'fields_' . $layout_path_array[1];
 
 // get the fields
 $fields = $displayData->get($fields_tab_layout) ?: array(
+	'title',
 	'created',
 	'created_by',
 	'modified',

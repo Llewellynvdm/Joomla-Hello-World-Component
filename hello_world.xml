@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.2" method="upgrade">
 	<name>COM_HELLO_WORLD</name>
-	<creationDate>30th May, 2020</creationDate>
+	<creationDate>4th January, 2021</creationDate>
 	<author>Llewellyn</author>
 	<authorEmail>joomla@vdm.io</authorEmail>
 	<authorUrl>https://www.vdm.io</authorUrl>
 	<copyright>Copyright (C) 2015. All Rights Reserved</copyright>
 	<license>GNU/GPL Version 2 or later - http://www.gnu.org/licenses/gpl-2.0.html</license>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<description><![CDATA[
-		<h1>Hello World (v.1.0.0)</h1>
+		<h1>Hello World (v.1.0.1)</h1>
 		<div style="clear: both;"></div>
 		<p></p>
 		<p>Created by <a href="https://www.vdm.io" target="_blank">Llewellyn</a><br /><small>Development started 20th September, 2017</small></p>
@@ -97,6 +97,6 @@
 
 	</administration>
 	<updateservers>
-		<server type="extension" enabled="1" element="com_hello_world" name="Hello World">https://raw.githubusercontent.com/namibia/JCB-Hello-World/master/helloworld_updateserver.xml</server>
+		<server type="extension" enabled="1" element="com_hello_world" name="Hello World">https://raw.githubusercontent.com/Llewellynvdm/Joomla-Hello-World-Component/master/helloworld_updateserver.xml</server>
 	</updateservers>
 </extension>

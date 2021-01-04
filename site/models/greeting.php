@@ -3,8 +3,8 @@
 				VDM 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.0
-	@build			30th May, 2020
+	@version		1.0.1
+	@build			4th January, 2021
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		greeting.php
@@ -203,23 +203,6 @@ class Hello_worldModelGreeting extends JModelAdmin
 			$form->setFieldAttribute('created', 'disabled', 'true');
 			// Disable fields while saving.
 			$form->setFieldAttribute('created', 'filter', 'unset');
-		}
-		// Modify the form based on Edit Greeting access controls.
-		if ($id != 0 && (!$user->authorise('greeting.edit.greeting', 'com_hello_world.greeting.' . (int) $id))
-			|| ($id == 0 && !$user->authorise('greeting.edit.greeting', 'com_hello_world')))
-		{
-			// Disable fields for display.
-			$form->setFieldAttribute('greeting', 'disabled', 'true');
-			// Disable fields for display.
-			$form->setFieldAttribute('greeting', 'readonly', 'true');
-			// If there is no value continue.
-			if (!$form->getValue('greeting'))
-			{
-				// Disable fields while saving.
-				$form->setFieldAttribute('greeting', 'filter', 'unset');
-				// Disable fields while saving.
-				$form->setFieldAttribute('greeting', 'required', 'false');
-			}
 		}
 		// Only load these values if no id is found
 		if (0 == $id)

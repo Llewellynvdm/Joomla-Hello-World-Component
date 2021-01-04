@@ -22,14 +22,12 @@
 		<action name="greeting.batch" title="COM_HELLO_WORLD_GREETINGS_BATCH_USE" description="COM_HELLO_WORLD_GREETINGS_BATCH_USE_DESC" />
 		<action name="greeting.dashboard_add" title="COM_HELLO_WORLD_GREETINGS_DASHBOARD_ADD" description="COM_HELLO_WORLD_GREETINGS_DASHBOARD_ADD_DESC" />
 		<action name="greeting.dashboard_list" title="COM_HELLO_WORLD_GREETINGS_DASHBOARD_LIST" description="COM_HELLO_WORLD_GREETINGS_DASHBOARD_LIST_DESC" />
-		<action name="greeting.edit.greeting" title="COM_HELLO_WORLD_GREETINGS_EDIT_GREETING" description="COM_HELLO_WORLD_GREETINGS_EDIT_GREETING_DESC" />
 		<action name="greeting.version" title="COM_HELLO_WORLD_GREETINGS_EDIT_VERSION" description="COM_HELLO_WORLD_GREETINGS_EDIT_VERSION_DESC" />
 		<action name="greeting.export" title="COM_HELLO_WORLD_GREETINGS_EXPORT" description="COM_HELLO_WORLD_GREETINGS_EXPORT_DESC" />
 		<action name="greeting.import" title="COM_HELLO_WORLD_GREETINGS_IMPORT" description="COM_HELLO_WORLD_GREETINGS_IMPORT_DESC" />
 		<action name="greeting.submenu" title="COM_HELLO_WORLD_GREETINGS_SUBMENU" description="COM_HELLO_WORLD_GREETINGS_SUBMENU_DESC" />
 	</section>
 	<section name="greeting">
-		<action name="greeting.edit.greeting" title="COM_HELLO_WORLD_GREETINGS_EDIT_GREETING" description="COM_HELLO_WORLD_GREETINGS_EDIT_GREETING_DESC" />
 		<action name="greeting.version" title="COM_HELLO_WORLD_GREETINGS_EDIT_VERSION" description="COM_HELLO_WORLD_GREETINGS_EDIT_VERSION_DESC" />
 	</section>
 	<section name="fieldgroup">

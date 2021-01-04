@@ -3,8 +3,8 @@
 				VDM 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.0
-	@build			30th May, 2020
+	@version		1.0.1
+	@build			4th January, 2021
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		default.php
@@ -22,17 +22,12 @@
 defined('_JEXEC') or die('Restricted access');
 
 
-/***[JCBGUI.site_view.php_view.50.$$$$]***/
-$edit = "index.php?option=com_hello_world&view=greetings&task=greeting.edit";/***[/JCBGUI$$$$]***/
 
-
+$edit = "index.php?option=com_hello_world&view=greetings&task=greeting.edit";
 ?>
 <?php echo $this->toolbar->render(); ?>
-
-<!--[JCBGUI.site_view.default.50.$$$$]-->
 <ul class="uk-list uk-list-striped">
 <?php foreach ($this->items as $item): ?>
 <li><?php echo JText::_('COM_HELLO_WORLD_GREETING'); ?>: <a href="<?php echo JRoute::_(Hello_worldHelperRoute::getGreetRoute($item->slug)); ?>"><?php echo $item->greeting; ?></a> <a href="<?php echo $edit; ?>&id=<?php echo $item->id; ?>"><?php echo JText::_('COM_HELLO_WORLD_EDIT'); ?></a></li>
 <?php endforeach; ?>
-</ul><!--[/JCBGUI$$$$]-->
-
+</ul>

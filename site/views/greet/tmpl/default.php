@@ -3,8 +3,8 @@
 				VDM 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.0
-	@build			30th May, 2020
+	@version		1.0.1
+	@build			4th January, 2021
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		default.php
@@ -21,9 +21,7 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
+
 ?>
 <?php echo $this->toolbar->render(); ?>
-
-<!--[JCBGUI.site_view.default.51.$$$$]-->
-<h2><?php echo $this->item->greeting; ?></h2><!--[/JCBGUI$$$$]-->
-
+<h2><?php echo $this->item->greeting; ?></h2>

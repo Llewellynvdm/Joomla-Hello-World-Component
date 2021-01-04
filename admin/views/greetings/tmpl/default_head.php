@@ -3,8 +3,8 @@
 				VDM 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.0
-	@build			30th May, 2020
+	@version		1.0.1
+	@build			4th January, 2021
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		default_head.php
@@ -25,7 +25,7 @@ defined('_JEXEC') or die('Restricted access');
 <tr>
 	<?php if ($this->canEdit&& $this->canState): ?>
 		<th width="1%" class="nowrap center hidden-phone">
-			<?php echo JHtml::_('grid.sort', '<i class="icon-menu-2"></i>', 'ordering', $this->listDirn, $this->listOrder, null, 'asc', 'JGRID_HEADING_ORDERING'); ?>
+			<?php echo JHtml::_('searchtools.sort', '', 'a.ordering', $this->listDirn, $this->listOrder, null, 'asc', 'JGRID_HEADING_ORDERING', 'icon-menu-2'); ?>
 		</th>
 		<th width="20" class="nowrap center">
 			<?php echo JHtml::_('grid.checkall'); ?>
@@ -39,11 +39,11 @@ defined('_JEXEC') or die('Restricted access');
 		</th>
 	<?php endif; ?>
 	<th class="nowrap" >
-			<?php echo JHtml::_('grid.sort', 'COM_HELLO_WORLD_GREETING_GREETING_LABEL', 'a.greeting', $this->listDirn, $this->listOrder); ?>
+			<?php echo JHtml::_('searchtools.sort', 'COM_HELLO_WORLD_GREETING_GREETING_LABEL', 'a.greeting', $this->listDirn, $this->listOrder); ?>
 	</th>
 	<?php if ($this->canState): ?>
 		<th width="10" class="nowrap center" >
-			<?php echo JHtml::_('grid.sort', 'COM_HELLO_WORLD_GREETING_STATUS', 'a.published', $this->listDirn, $this->listOrder); ?>
+			<?php echo JHtml::_('searchtools.sort', 'COM_HELLO_WORLD_GREETING_STATUS', 'a.published', $this->listDirn, $this->listOrder); ?>
 		</th>
 	<?php else: ?>
 		<th width="10" class="nowrap center" >
@@ -51,6 +51,6 @@ defined('_JEXEC') or die('Restricted access');
 		</th>
 	<?php endif; ?>
 	<th width="5" class="nowrap center hidden-phone" >
-			<?php echo JHtml::_('grid.sort', 'COM_HELLO_WORLD_GREETING_ID', 'a.id', $this->listDirn, $this->listOrder); ?>
+			<?php echo JHtml::_('searchtools.sort', 'COM_HELLO_WORLD_GREETING_ID', 'a.id', $this->listDirn, $this->listOrder); ?>
 	</th>
 </tr>

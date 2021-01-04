@@ -3,8 +3,8 @@
 				VDM 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.0
-	@build			30th May, 2020
+	@version		1.0.1
+	@build			4th January, 2021
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		hello_world.php
@@ -22,6 +22,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 use Joomla\CMS\Language\Language;
+use Joomla\Registry\Registry;
 use Joomla\String\StringHelper;
 use Joomla\Utilities\ArrayHelper;
 
@@ -44,7 +45,7 @@ abstract class Hello_worldHelper
 	 */
 	public static $langTag;
 
-/***[INSERTED$$$$]***//*69*/
+
 	/**
 	* Write a file to the server
 	*
@@ -76,8 +77,8 @@ abstract class Hello_worldHelper
 		}
 		return $klaar;
 	}
-/***[/INSERTED$$$$]***/
-/***[INSERTED$$$$]***//*60*/
+
+
 	/**
 	* get the content of a file
 	*
@@ -129,8 +130,8 @@ abstract class Hello_worldHelper
 		}
 		return $none;
 	}
-/***[/INSERTED$$$$]***/
-/***[INSERTED$$$$]***//*71*/
+
+
 	/**
 	 * Remove folders with files
 	 * 
@@ -203,7 +204,7 @@ abstract class Hello_worldHelper
 		}
 		return false;
 	}
-/***[/INSERTED$$$$]***/
+
 
 	/**
 	 * Load the Composer Vendors

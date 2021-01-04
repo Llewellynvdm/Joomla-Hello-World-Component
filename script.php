@@ -3,8 +3,8 @@
 				VDM 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.0
-	@build			30th May, 2020
+	@version		1.0.1
+	@build			4th January, 2021
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		script.php
@@ -84,7 +84,7 @@ class com_hello_worldInstallerScript
 			$greeting_done = $db->execute();
 			if ($greeting_done)
 			{
-				// If succesfully remove greeting add queued success message.
+				// If successfully remove greeting add queued success message.
 				$app->enqueueMessage(JText::_('The fields with type (com_hello_world.greeting) context was removed from the <b>#__fields</b> table'));
 			}
 			// Also Remove greeting field values
@@ -98,7 +98,7 @@ class com_hello_worldInstallerScript
 			$greeting_done = $db->execute();
 			if ($greeting_done)
 			{
-				// If succesfully remove greeting add queued success message.
+				// If successfully remove greeting add queued success message.
 				$app->enqueueMessage(JText::_('The fields values for greeting was removed from the <b>#__fields_values</b> table'));
 			}
 		}
@@ -128,7 +128,7 @@ class com_hello_worldInstallerScript
 			$greeting_done = $db->execute();
 			if ($greeting_done)
 			{
-				// If succesfully remove greeting add queued success message.
+				// If successfully remove greeting add queued success message.
 				$app->enqueueMessage(JText::_('The field groups with type (com_hello_world.greeting) context was removed from the <b>#__fields_groups</b> table'));
 			}
 		}
@@ -160,7 +160,7 @@ class com_hello_worldInstallerScript
 			$greeting_done = $db->execute();
 			if ($greeting_done)
 			{
-				// If succesfully remove greeting add queued success message.
+				// If successfully remove greeting add queued success message.
 				$app->enqueueMessage(JText::_('The (com_hello_world.greeting) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
@@ -175,7 +175,7 @@ class com_hello_worldInstallerScript
 			$greeting_done = $db->execute();
 			if ($greeting_done)
 			{
-				// If succesfully remove greeting add queued success message.
+				// If successfully remove greeting add queued success message.
 				$app->enqueueMessage(JText::_('The (com_hello_world.greeting) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
@@ -190,7 +190,7 @@ class com_hello_worldInstallerScript
 			$greeting_done = $db->execute();
 			if ($greeting_done)
 			{
-				// If succesfully remove greeting add queued success message.
+				// If successfully removed greeting add queued success message.
 				$app->enqueueMessage(JText::_('The (com_hello_world.greeting) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
@@ -246,7 +246,7 @@ class com_hello_worldInstallerScript
 			$greeting_done = $db->execute();
 			if ($greeting_done)
 			{
-				// If succesfully remove Greeting add queued success message.
+				// If successfully remove Greeting add queued success message.
 				$app->enqueueMessage(JText::_('The (com_hello_world.greeting) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
@@ -261,7 +261,7 @@ class com_hello_worldInstallerScript
 			$greeting_done = $db->execute();
 			if ($greeting_done)
 			{
-				// If succesfully remove Greeting add queued success message.
+				// If successfully remove Greeting add queued success message.
 				$app->enqueueMessage(JText::_('The (com_hello_world.greeting) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
@@ -276,7 +276,7 @@ class com_hello_worldInstallerScript
 			$greeting_done = $db->execute();
 			if ($greeting_done)
 			{
-				// If succesfully remove Greeting add queued success message.
+				// If successfully removed Greeting add queued success message.
 				$app->enqueueMessage(JText::_('The (com_hello_world.greeting) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
@@ -320,7 +320,7 @@ class com_hello_worldInstallerScript
 		$greeting_done = $db->execute();
 		if ($greeting_done)
 		{
-			// If succesfully remove hello_world add queued success message.
+			// If successfully removed hello_world add queued success message.
 			$app->enqueueMessage(JText::_('All related items was removed from the <b>#__assets</b> table'));
 		}
 
@@ -569,7 +569,7 @@ class com_hello_worldInstallerScript
 			echo '<a target="_blank" href="https://www.vdm.io" title="Hello World">
 				<img src="components/com_hello_world/assets/images/vdm-component.jpg"/>
 				</a>
-				<h3>Upgrade to Version 1.0.0 Was Successful! Let us know if anything is not working as expected.</h3>';
+				<h3>Upgrade to Version 1.0.1 Was Successful! Let us know if anything is not working as expected.</h3>';
 
 			// Set db if not set already.
 			if (!isset($db))
