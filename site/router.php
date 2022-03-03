@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.1
-	@build			4th January, 2021
+	@build			3rd March, 2022
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		router.php
@@ -60,7 +60,7 @@ class Hello_worldRouter extends JComponentRouterBase
 		{
 			$view = $query['view'];
 
-			if (empty($query['Itemid']))
+			if (empty($query['Itemid']) && !(isset($view) && isset($query['id']) && ($view === 'greeting' || $view === 'greet' || $view === 'greetings')))
 			{
 				$segments[] = $query['view'];
 			}
@@ -123,7 +123,7 @@ class Hello_worldRouter extends JComponentRouterBase
 		$count = count($segments);
 		$vars = array();
 		
-		//Handle View and Identifier
+		// Handle View and Identifier
 		switch($segments[0])
 		{
 			case 'greeting':

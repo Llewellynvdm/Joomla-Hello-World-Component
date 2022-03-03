@@ -8,7 +8,7 @@
 + *Author*: [Llewellyn](mailto:joomla@vdm.io)
 + *Name*: [Hello World](https://www.vdm.io)
 + *First Build*: 20th September, 2017
-+ *Last Build*: 4th January, 2021
++ *Last Build*: 3rd March, 2022
 + *Version*: 1.0.1
 + *Copyright*: Copyright (C) 2015. All Rights Reserved
 + *License*: GNU/GPL Version 2 or later - http://www.gnu.org/licenses/gpl-2.0.html
@@ -21,7 +21,7 @@ due to [Automated Component Builder](http://joomlacomponentbuilder.com))
 > (if creating a folder and file took **5 seconds** and writing one line of code took **10 seconds**,
 > never making one mistake or taking any coffee break.)
 
-+ *Line count*: **14632**
++ *Line count*: **14630**
 + *File count*: **139**
 + *Folder count*: **55**
 

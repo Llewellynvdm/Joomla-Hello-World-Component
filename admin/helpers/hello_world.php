@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.1
-	@build			4th January, 2021
+	@build			3rd March, 2022
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		hello_world.php
@@ -28,6 +28,8 @@ use Joomla\Utilities\ArrayHelper;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use Joomla\CMS\Filesystem\File;
+use Joomla\CMS\Filesystem\Folder;
 
 /**
  * Hello_world component helper.
@@ -146,7 +148,7 @@ abstract class Hello_worldHelper
 	 */
 	public static function removeFolder($dir, $ignore = false)
 	{
-		if (JFolder::exists($dir))
+		if (Folder::exists($dir))
 		{
 			$it = new RecursiveDirectoryIterator($dir);
 			$it = new RecursiveIteratorIterator($it, RecursiveIteratorIterator::CHILD_FIRST);
@@ -176,7 +178,7 @@ abstract class Hello_worldHelper
 					{
 						continue;
 					}
-					JFolder::delete($file_dir);
+					Folder::delete($file_dir);
 				}
 				else
 				{
@@ -195,13 +197,13 @@ abstract class Hello_worldHelper
 					{
 						continue;
 					}
-					JFile::delete($file_dir);
+					File::delete($file_dir);
 				}
 			}
 			// delete the root folder if not ignore found
 			if (!self::checkArray($ignore))
 			{
-				return JFolder::delete($dir);
+				return Folder::delete($dir);
 			}
 			return true;
 		}
@@ -427,7 +429,7 @@ abstract class Hello_worldHelper
 	/**
 	* Prepares the xml document
 	*/
-	public static function xls($rows, $fileName = null, $title = null, $subjectTab = null, $creator = 'Joomla Component Builder', $description = null, $category = null,$keywords = null, $modified = null)
+	public static function xls($rows, $fileName = null, $title = null, $subjectTab = null, $creator = 'VDM', $description = null, $category = null,$keywords = null, $modified = null)
 	{
 		// set the user
 		$user = JFactory::getUser();
@@ -461,7 +463,7 @@ abstract class Hello_worldHelper
 		// Set document properties
 		$spreadsheet->getProperties()
 			->setCreator($creator)
-			->setCompany('Joomla Component Builder')
+			->setCompany('VDM')
 			->setLastModifiedBy($modified)
 			->setTitle($title)
 			->setSubject($subjectTab);
@@ -1078,12 +1080,12 @@ abstract class Hello_worldHelper
 			$filePath = $path . '/' . $name . '.php';
 			$fullPathModel = $fullPathModels . '/' . $name . '.php';
 			// check if it exists
-			if (JFile::exists($filePath))
+			if (File::exists($filePath))
 			{
 				// get the file
 				require_once $filePath;
 			}
-			elseif (JFile::exists($fullPathModel))
+			elseif (File::exists($fullPathModel))
 			{
 				// get the file
 				require_once $fullPathModel;

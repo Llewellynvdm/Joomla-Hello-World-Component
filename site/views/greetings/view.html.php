@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.1
-	@build			4th January, 2021
+	@build			3rd March, 2022
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		view.html.php
@@ -109,10 +109,10 @@ class Hello_worldViewGreetings extends JViewLegacy
 	{
 		
 		// set help url for this view if found
-		$help_url = Hello_worldHelper::getHelpUrl('greetings');
-		if (Hello_worldHelper::checkString($help_url))
+		$this->help_url = Hello_worldHelper::getHelpUrl('greetings');
+		if (Hello_worldHelper::checkString($this->help_url))
 		{
-			JToolbarHelper::help('COM_HELLO_WORLD_HELP_MANAGER', false, $help_url);
+			JToolbarHelper::help('COM_HELLO_WORLD_HELP_MANAGER', false, $this->help_url);
 		}
 		// now initiate the toolbar
 		$this->toolbar = JToolbar::getInstance();

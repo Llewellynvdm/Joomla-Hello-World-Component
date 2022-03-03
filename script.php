@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.1
-	@build			4th January, 2021
+	@build			3rd March, 2022
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		script.php
@@ -21,7 +21,10 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-JHTML::_('behavior.modal');
+use Joomla\CMS\Filesystem\File;
+use Joomla\CMS\Filesystem\Folder;
+use Joomla\CMS\Installer\Adapter\ComponentAdapter;
+JHTML::_('bootstrap.renderModal');
 
 /**
  * Script File of Hello_world Component
@@ -33,23 +36,23 @@ class com_hello_worldInstallerScript
 	 *
 	 * @param   JAdapterInstance  $parent  The object responsible for running this script
 	 */
-	public function __construct(JAdapterInstance $parent) {}
+	public function __construct(ComponentAdapter $parent) {}
 
 	/**
 	 * Called on installation
 	 *
-	 * @param   JAdapterInstance  $parent  The object responsible for running this script
+	 * @param   ComponentAdapter  $parent  The object responsible for running this script
 	 *
 	 * @return  boolean  True on success
 	 */
-	public function install(JAdapterInstance $parent) {}
+	public function install(ComponentAdapter $parent) {}
 
 	/**
 	 * Called on uninstallation
 	 *
-	 * @param   JAdapterInstance  $parent  The object responsible for running this script
+	 * @param   ComponentAdapter  $parent  The object responsible for running this script
 	 */
-	public function uninstall(JAdapterInstance $parent)
+	public function uninstall(ComponentAdapter $parent)
 	{
 		// Get Application object
 		$app = JFactory::getApplication();
@@ -385,21 +388,21 @@ class com_hello_worldInstallerScript
 	/**
 	 * Called on update
 	 *
-	 * @param   JAdapterInstance  $parent  The object responsible for running this script
+	 * @param   ComponentAdapter  $parent  The object responsible for running this script
 	 *
 	 * @return  boolean  True on success
 	 */
-	public function update(JAdapterInstance $parent){}
+	public function update(ComponentAdapter $parent){}
 
 	/**
 	 * Called before any type of action
 	 *
 	 * @param   string  $type  Which action is happening (install|uninstall|discover_install|update)
-	 * @param   JAdapterInstance  $parent  The object responsible for running this script
+	 * @param   ComponentAdapter  $parent  The object responsible for running this script
 	 *
 	 * @return  boolean  True on success
 	 */
-	public function preflight($type, JAdapterInstance $parent)
+	public function preflight($type, ComponentAdapter $parent)
 	{
 		// get application
 		$app = JFactory::getApplication();
@@ -424,12 +427,12 @@ class com_hello_worldInstallerScript
 		{
 		}
 		// check if the PHPExcel stuff is still around
-		if (JFile::exists(JPATH_ADMINISTRATOR . '/components/com_hello_world/helpers/PHPExcel.php'))
+		if (File::exists(JPATH_ADMINISTRATOR . '/components/com_hello_world/helpers/PHPExcel.php'))
 		{
 			// We need to remove this old PHPExcel folder
 			$this->removeFolder(JPATH_ADMINISTRATOR . '/components/com_hello_world/helpers/PHPExcel');
 			// We need to remove this old PHPExcel file
-			JFile::delete(JPATH_ADMINISTRATOR . '/components/com_hello_world/helpers/PHPExcel.php');
+			File::delete(JPATH_ADMINISTRATOR . '/components/com_hello_world/helpers/PHPExcel.php');
 		}
 		return true;
 	}
@@ -438,11 +441,11 @@ class com_hello_worldInstallerScript
 	 * Called after any type of action
 	 *
 	 * @param   string  $type  Which action is happening (install|uninstall|discover_install|update)
-	 * @param   JAdapterInstance  $parent  The object responsible for running this script
+	 * @param   ComponentAdapter  $parent  The object responsible for running this script
 	 *
 	 * @return  boolean  True on success
 	 */
-	public function postflight($type, JAdapterInstance $parent)
+	public function postflight($type, ComponentAdapter $parent)
 	{
 		// get application
 		$app = JFactory::getApplication();
@@ -482,7 +485,7 @@ class com_hello_worldInstallerScript
 			$db->setQuery($query);
 			$allDone = $db->execute();
 
-			// Install the global extenstion params.
+			// Install the global extension params.
 			$query = $db->getQuery(true);
 			// Field to update.
 			$fields = array(
@@ -642,7 +645,7 @@ class com_hello_worldInstallerScript
 	 */
 	protected function removeFolder($dir, $ignore = false)
 	{
-		if (JFolder::exists($dir))
+		if (Folder::exists($dir))
 		{
 			$it = new RecursiveDirectoryIterator($dir);
 			$it = new RecursiveIteratorIterator($it, RecursiveIteratorIterator::CHILD_FIRST);
@@ -672,7 +675,7 @@ class com_hello_worldInstallerScript
 					{
 						continue;
 					}
-					JFolder::delete($file_dir);
+					Folder::delete($file_dir);
 				}
 				else
 				{
@@ -691,13 +694,13 @@ class com_hello_worldInstallerScript
 					{
 						continue;
 					}
-					JFile::delete($file_dir);
+					File::delete($file_dir);
 				}
 			}
 			// delete the root folder if not ignore found
 			if (!$this->checkArray($ignore))
 			{
-				return JFolder::delete($dir);
+				return Folder::delete($dir);
 			}
 			return true;
 		}
@@ -743,7 +746,7 @@ class com_hello_worldInstallerScript
 		$installer = $parent->getParent();
 		$installPath = $installer->getPath('source');
 		// get all the folders
-		$folders = JFolder::folders($installPath);
+		$folders = Folder::folders($installPath);
 		// check if we have folders we may want to copy
 		$doNotCopy = array('media','admin','site'); // Joomla already deals with these
 		if (count((array) $folders) > 1)
@@ -758,7 +761,7 @@ class com_hello_worldInstallerScript
 					// set the destination path
 					$dest = JPATH_ROOT.'/'.$folder;
 					// now try to copy the folder
-					if (!JFolder::copy($src, $dest, '', true))
+					if (!Folder::copy($src, $dest, '', true))
 					{
 						$app->enqueueMessage('Could not copy '.$folder.' folder into place, please make sure destination is writable!', 'error');
 					}

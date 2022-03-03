@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.1
-	@build			4th January, 2021
+	@build			3rd March, 2022
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		hello_world.php
@@ -21,7 +21,7 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-JHtml::_('behavior.tabstate');
+
 
 // Set the component css/js
 $document = JFactory::getDocument();
@@ -30,7 +30,7 @@ $document->addScript('components/com_hello_world/assets/js/site.js');
 
 // Require helper files
 JLoader::register('Hello_worldHelper', __DIR__ . '/helpers/hello_world.php');
-JLoader::register('Hello_worldHelperRoute', __DIR__ . '/helpers/route.php'); 
+JLoader::register('Hello_worldHelperRoute', __DIR__ . '/helpers/route.php');
 
 // Get an instance of the controller prefixed by Hello_world
 $controller = JControllerLegacy::getInstance('Hello_world');

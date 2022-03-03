@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.1
-	@build			4th January, 2021
+	@build			3rd March, 2022
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		greeting.php
@@ -103,12 +103,6 @@ class Hello_worldModelGreeting extends JModelAdmin
 				$registry = new Registry;
 				$registry->loadString($item->metadata);
 				$item->metadata = $registry->toArray();
-			}
-			
-			if (!empty($item->id))
-			{
-				$item->tags = new JHelperTags;
-				$item->tags->getTagIds($item->id, 'com_hello_world.greeting');
 			}
 		}
 
@@ -231,7 +225,7 @@ class Hello_worldModelGreeting extends JModelAdmin
 	 */
 	public function getScript()
 	{
-		return 'administrator/components/com_hello_world/models/forms/greeting.js';
+		return 'media/com_hello_world/js/greeting.js';
 	}
     
 	/**

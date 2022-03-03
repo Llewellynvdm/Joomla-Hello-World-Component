@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.1
-	@build			4th January, 2021
+	@build			3rd March, 2022
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		hello_world.php
@@ -20,6 +20,8 @@
 
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
+
+
 
 /**
  * Hello_world Controller

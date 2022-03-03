@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS `#__hello_world_greeting` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`greeting` VARCHAR(255) NOT NULL DEFAULT '',
-	`params` text NOT NULL,
+	`params` text NULL,
 	`published` TINYINT(3) NOT NULL DEFAULT 1,
 	`created_by` INT(10) unsigned NOT NULL DEFAULT 0,
 	`modified_by` INT(10) unsigned NOT NULL DEFAULT 0,
