@@ -3,8 +3,8 @@
 				VDM 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.1
-	@build			3rd March, 2022
+	@version		1.1.0
+	@build			27th May, 2022
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		greetings.php
@@ -21,12 +21,13 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
+use Joomla\CMS\MVC\Model\ListModel;
 use Joomla\Utilities\ArrayHelper;
 
 /**
- * Hello_world Model for Greetings
+ * Hello_world List Model for Greetings
  */
-class Hello_worldModelGreetings extends JModelList
+class Hello_worldModelGreetings extends ListModel
 {
 	/**
 	 * Model user data.

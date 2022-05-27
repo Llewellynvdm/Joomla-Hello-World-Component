@@ -3,8 +3,8 @@
 				VDM 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.1
-	@build			3rd March, 2022
+	@version		1.1.0
+	@build			27th May, 2022
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		greeting.php
@@ -21,6 +21,7 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
+use Joomla\CMS\Table\Table;
 use Joomla\Registry\Registry;
 use Joomla\String\StringHelper;
 use Joomla\Utilities\ArrayHelper;
@@ -28,7 +29,7 @@ use Joomla\Utilities\ArrayHelper;
 /**
  * Greetings Table class
  */
-class Hello_worldTableGreeting extends JTable
+class Hello_worldTableGreeting extends Table
 {
 	/**
 	 * Ensure the params and metadata in json encoded in the bind method

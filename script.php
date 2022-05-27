@@ -3,8 +3,8 @@
 				VDM 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.1
-	@build			3rd March, 2022
+	@version		1.1.0
+	@build			27th May, 2022
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		script.php
@@ -572,7 +572,7 @@ class com_hello_worldInstallerScript
 			echo '<a target="_blank" href="https://www.vdm.io" title="Hello World">
 				<img src="components/com_hello_world/assets/images/vdm-component.jpg"/>
 				</a>
-				<h3>Upgrade to Version 1.0.1 Was Successful! Let us know if anything is not working as expected.</h3>';
+				<h3>Upgrade to Version 1.1.0 Was Successful! Let us know if anything is not working as expected.</h3>';
 
 			// Set db if not set already.
 			if (!isset($db))

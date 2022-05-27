@@ -3,8 +3,8 @@
 				VDM 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.1
-	@build			3rd March, 2022
+	@version		1.1.0
+	@build			27th May, 2022
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		import.php
@@ -21,15 +21,16 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 use Joomla\CMS\Filesystem\File;
 use Joomla\CMS\Filesystem\Folder;
 use Joomla\Utilities\ArrayHelper;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 /**
- * Hello_world Import Model
+ * Hello_world Import Base Database Model
  */
-class Hello_worldModelImport extends JModelLegacy
+class Hello_worldModelImport extends BaseDatabaseModel
 {
 	// set uploading values
 	protected $use_streams = false;

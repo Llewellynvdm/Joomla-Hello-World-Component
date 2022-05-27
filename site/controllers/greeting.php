@@ -3,8 +3,8 @@
 				VDM 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.1
-	@build			3rd March, 2022
+	@version		1.1.0
+	@build			27th May, 2022
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		greeting.php
@@ -21,12 +21,13 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
+use Joomla\CMS\MVC\Controller\FormController;
 use Joomla\Utilities\ArrayHelper;
 
 /**
- * Greeting Controller
+ * Greeting Form Controller
  */
-class Hello_worldControllerGreeting extends JControllerForm
+class Hello_worldControllerGreeting extends FormController
 {
 	/**
 	 * Current or most recently performed task.

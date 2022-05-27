@@ -3,8 +3,8 @@
 				VDM 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.1
-	@build			3rd March, 2022
+	@version		1.1.0
+	@build			27th May, 2022
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		import.php
@@ -21,12 +21,13 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
+use Joomla\CMS\MVC\Controller\BaseController;
 use Joomla\Utilities\ArrayHelper;
 
 /**
- * Hello_world Import Controller
+ * Hello_world Import Base Controller
  */
-class Hello_worldControllerImport extends JControllerLegacy
+class Hello_worldControllerImport extends BaseController
 {
 	/**
 	 * Import an spreadsheet.

@@ -3,8 +3,8 @@
 				VDM 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.1
-	@build			3rd March, 2022
+	@version		1.1.0
+	@build			27th May, 2022
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		view.html.php
@@ -21,10 +21,12 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
+use Joomla\CMS\MVC\View\HtmlView;
+
 /**
- * Hello_world View class for the Greetings
+ * Hello_world Html View class for the Greetings
  */
-class Hello_worldViewGreetings extends JViewLegacy
+class Hello_worldViewGreetings extends HtmlView
 {
 	/**
 	 * Greetings view display method

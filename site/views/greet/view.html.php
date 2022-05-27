@@ -3,8 +3,8 @@
 				VDM 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.1
-	@build			3rd March, 2022
+	@version		1.1.0
+	@build			27th May, 2022
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		view.html.php
@@ -21,10 +21,12 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
+use Joomla\CMS\MVC\View\HtmlView;
+
 /**
- * Hello_world View class for the Greet
+ * Hello_world Html View class for the Greet
  */
-class Hello_worldViewGreet extends JViewLegacy
+class Hello_worldViewGreet extends HtmlView
 {
 	// Overwriting JView display method
 	function display($tpl = null)
@@ -76,12 +78,12 @@ class Hello_worldViewGreet extends JViewLegacy
 		// The uikit css.
 		if ((!$HeaderCheck->css_loaded('uikit.min') || $uikit == 1) && $uikit != 2 && $uikit != 3)
 		{
-			$this->document->addStyleSheet(JURI::root(true) .'/media/com_hello_world/uikit-v2/css/uikit'.$style.$size.'.css', (Hello_worldHelper::jVersion()->isCompatible('3.8.0')) ? array('version' => 'auto') : 'text/css');
+			JHtml::_('stylesheet', 'media/com_hello_world/uikit-v2/css/uikit'.$style.$size.'.css', ['version' => 'auto']);
 		}
 		// The uikit js.
 		if ((!$HeaderCheck->js_loaded('uikit.min') || $uikit == 1) && $uikit != 2 && $uikit != 3)
 		{
-			$this->document->addScript(JURI::root(true) .'/media/com_hello_world/uikit-v2/js/uikit'.$size.'.js', (Hello_worldHelper::jVersion()->isCompatible('3.8.0')) ? array('version' => 'auto') : 'text/javascript');
+			JHtml::_('script', 'media/com_hello_world/uikit-v2/js/uikit'.$size.'.js', ['version' => 'auto']);
 		}
 		// load the meta description
 		if (isset($this->item->metadesc) && $this->item->metadesc)

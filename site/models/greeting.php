@@ -3,8 +3,8 @@
 				VDM 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.1
-	@build			3rd March, 2022
+	@version		1.1.0
+	@build			27th May, 2022
 	@created		20th September, 2017
 	@package		Hello World
 	@subpackage		greeting.php
@@ -21,14 +21,15 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
+use Joomla\CMS\MVC\Model\AdminModel;
 use Joomla\Registry\Registry;
 use Joomla\String\StringHelper;
 use Joomla\Utilities\ArrayHelper;
 
 /**
- * Hello_world Greeting Model
+ * Hello_world Greeting Admin Model
  */
-class Hello_worldModelGreeting extends JModelAdmin
+class Hello_worldModelGreeting extends AdminModel
 {
 	/**
 	 * The tab layout fields array.
